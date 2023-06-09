@@ -1,9 +1,6 @@
 package ItemProcessor;
 
-
-
 import java.util.*;
-
 import thingy.Item;
 
 public class ItemProcessor implements ItemProcessor_I {

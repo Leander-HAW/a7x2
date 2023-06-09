@@ -10,6 +10,7 @@ public interface ItemProcessor_I {
     Collection<Item> process( Item item );
     
     
+    
     void reset();
 
     boolean isEmpty();
