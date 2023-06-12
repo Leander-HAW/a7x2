@@ -5,37 +5,54 @@ import java.util.*;
 import thingy.*;
 
 public class ItemProcessor implements ItemProcessor_I {
-	private Map<Size, Set<Item>> sevensome;
+	private Map<Size, List<Set<Item>>> sevensome;
 
 	public ItemProcessor() {
-		this.sevensome = new HashMap<Size, Set<Item>>();
+		this.sevensome = new HashMap<Size, List<Set<Item>>>();
 	}
-	
-	
+
 	@Override
-	public  Collection<Item> process(Item item) {
-	
+	public Collection<Item> process(Item item) {
+
 		Size currentItemSize = item.getSize();
-		Set<Item> returnSet = sevensome.get(currentItemSize);
-
-		if (returnSet == null) {
+		List<Set<Item>> listofSets = sevensome.get(currentItemSize);
+		Set<Item> returnSet = null;
+		boolean itemAdded = false;
+		if (listofSets == null) {
+			listofSets = new ArrayList<Set<Item>>();
 			returnSet = new HashSet<Item>();
-			sevensome.put(currentItemSize, returnSet);
+			returnSet.add(item);
+			listofSets.add(returnSet);
+			sevensome.put(currentItemSize, listofSets);
+		} else {
+			Iterator<Set<Item>> iterator = listofSets.iterator();
+			returnSet = iterator.next();
+			while (!itemAdded) {
+				if (!returnSet.contains(item)) {
+					returnSet.add(item);
+					itemAdded = true;
+				} else if (iterator.hasNext()) {
+					returnSet = iterator.next();
+				} else {
+					returnSet = new HashSet<Item>();
+					returnSet.add(item);
+					listofSets.add(returnSet);
+					sevensome.put(currentItemSize, listofSets);
+					itemAdded = true;
+				}
+			}
 		}
-		returnSet.add(item);
-		 
-        Iterator<Size> iterator = sevensome.keySet().iterator();
-
-        // Mit dem Iterator über die Schlüssel iterieren
-        while (iterator.hasNext()) {
-            Size key = iterator.next();
-            
-            returnSet = sevensome.get(key);
-            if(returnSet.size() == requestedNumberOfThingsOfSameSize) {
-            	return sevensome.remove(key);
-            }
-            
-        }
+		Iterator<Size> iteratorKey = sevensome.keySet().iterator();
+		while (iteratorKey.hasNext()) {
+			Size key = iteratorKey.next();
+			listofSets = sevensome.get(key);
+			for (int i = 0; i < listofSets.size(); i++) {
+				returnSet = listofSets.get(i);
+				if (returnSet.size() == requestedNumberOfThingsOfSameSize) {
+					return listofSets.remove(i);
+				}
+			}
+		}
 		return null;
 	}
 

@@ -1,42 +1,64 @@
 package ItemProcessor;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static ItemProcessor.ItemProcessor_I.*;
 //
 import java.util.*;
 
 import org.junit.jupiter.api.Test;
 import thingy.*;
 
-
 public class UnitTestFrame {
 
-    @Test
-    public void testIsProcessWorkingLikeExpectet() {
-    	
-        final ItemProcessor_I ItemProcessor = new ItemProcessor();
-        Collection<Item> processedResult=new HashSet<Item>();;
-        final Item[] ia = {
-                new Item( Color.BLACK, Size.LARGE,  Weight.HEAVY,  1L ),
-                new Item( Color.FLAX, Size.LARGE,  Weight.HEAVY,  2L ),
-                new Item( Color.GOLD, Size.LARGE,  Weight.HEAVY,  3L ),
-                new Item( Color.AERO, Size.LARGE,  Weight.HEAVY,  4L ),
-                new Item( Color.GRAY, Size.LARGE,  Weight.HEAVY,  5L ),
-                new Item( Color.PURPLE, Size.LARGE,  Weight.HEAVY,  5L ),
-                new Item( Color.LEMON, Size.LARGE,  Weight.HEAVY,  5L ),
-            };
-       for (int i = 0; i <= ia.length-1; i++) {
-        	
-    	   processedResult = ItemProcessor.process( ia[i] );
-        }
-    
-       for (int i = 0; i < ia.length; i++) {
-    	   
-    	   assertTrue(processedResult.contains(ia[i]));
-       }
+	@Test
+	public void testIsProcessWorkingLikeExpectet() {
 
-       
+		final ItemProcessor_I ItemProcessor = new ItemProcessor();
+		Collection<Item> processedResult = new HashSet<Item>();
+		;
+		final Item[] ia = { new Item(Color.BLACK, Size.LARGE, Weight.HEAVY, 1L),
+				new Item(Color.FLAX, Size.LARGE, Weight.HEAVY, 2L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 3L),
+				new Item(Color.AERO, Size.LARGE, Weight.HEAVY, 4L),
+				new Item(Color.GRAY, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.PURPLE, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.LEMON, Size.LARGE, Weight.HEAVY, 5L) };
+
+		// Insert items in ItemProcessort
+		for (int i = 0; i <= ia.length - 1; i++) {
+			processedResult = ItemProcessor.process(ia[i]);
+		}
+		for (int i = 0; i < ia.length; i++) {
+			assertTrue(processedResult.contains(ia[i]));
+		}
+
     }//method()
     
+	@Test
+	public void testSameItems() {
+
+		final ItemProcessor_I ItemProcessor = new ItemProcessor();
+		Collection<Item> processedResult = new HashSet<Item>();
+		
+		final Item[] ia = {
+				new Item(Color.BLACK, Size.LARGE, Weight.HEAVY, 1L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 3L),
+				new Item(Color.AERO, Size.LARGE, Weight.HEAVY, 4L),
+				new Item(Color.GRAY, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.PURPLE, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.LEMON, Size.LARGE, Weight.HEAVY, 5L)
+			};
+
+		// Insert items in ItemProcessort
+		for(int j = 0; j<=3; j++) {
+			for (int i = 0; i <= ia.length - 1; i++) {
+				processedResult = ItemProcessor.process(ia[i]);
+			}
+		}
+		for (int i = 0; i < ia.length; i++) {
+			assertTrue(processedResult.contains(ia[i]));
+		}
+
+    }//method()
     /*
     /**
      * Erzeuge alle Kombination von Color x Size x Weight
