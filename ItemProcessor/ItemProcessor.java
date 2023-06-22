@@ -3,18 +3,19 @@ package ItemProcessor;
 import java.util.*;
 
 import thingy.*;
+import Sevensome.*;
 
 public class ItemProcessor implements ItemProcessor_I {
-	private Map<Size, List<Set<Item>>> sevensome;
-
+	private Sevensome<Color> sevensome;
+	
 	public ItemProcessor() {
-		this.sevensome = new HashMap<Size, List<Set<Item>>>();
+		sevensome = new Sevensome<Color>();
 	}
-
+	
 	@Override
 	public Collection<Item> process(Item item) {
-		Size currentItemSize = item.getSize();
-		List<Set<Item>> listofSets = sevensome.get(currentItemSize);
+		Color currentItemColor = item.getColor();
+		List<Set<Item>> listofSets = sevensome.get(currentItemColor);
 		Set<Item> returnSet = null;
 		boolean itemAdded = false;
 		if (listofSets == null) {
@@ -22,7 +23,7 @@ public class ItemProcessor implements ItemProcessor_I {
 			returnSet = new HashSet<Item>();
 			returnSet.add(item);
 			listofSets.add(returnSet);
-			sevensome.put(currentItemSize, listofSets);
+			sevensome.put(currentItemColor, listofSets);
 		} else {
 			Iterator<Set<Item>> iterator = listofSets.iterator();
 			returnSet = iterator.next();
@@ -36,14 +37,14 @@ public class ItemProcessor implements ItemProcessor_I {
 					returnSet = new HashSet<Item>();
 					returnSet.add(item);
 					listofSets.add(returnSet);
-					sevensome.put(currentItemSize, listofSets);
+					sevensome.put(currentItemColor, listofSets);
 					itemAdded = true;
 				}
 			}
 		}
-		Iterator<Size> iteratorKey = sevensome.keySet().iterator();
+		Iterator<Color> iteratorKey = sevensome.keySet().iterator();
 		while (iteratorKey.hasNext()) {
-			Size key = iteratorKey.next();
+			Color key = iteratorKey.next();
 			listofSets = sevensome.get(key);
 			for (int i = 0; i < listofSets.size(); i++) {
 				returnSet = listofSets.get(i);
@@ -54,17 +55,14 @@ public class ItemProcessor implements ItemProcessor_I {
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
-		
+		this.sevensome.clear();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.sevensome.isEmpty();
 	}
-
 }

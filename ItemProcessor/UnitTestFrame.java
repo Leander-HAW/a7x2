@@ -14,13 +14,14 @@ public class UnitTestFrame {
 		final ItemProcessor_I ItemProcessor = new ItemProcessor();
 		Collection<Item> processedResult = new HashSet<Item>();
 		
-		final Item[] ia = { new Item(Color.BLACK, Size.LARGE, Weight.HEAVY, 1L),
-				new Item(Color.FLAX, Size.LARGE, Weight.HEAVY, 2L),
-				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 3L),
-				new Item(Color.AERO, Size.LARGE, Weight.HEAVY, 4L),
-				new Item(Color.GRAY, Size.LARGE, Weight.HEAVY, 5L),
-				new Item(Color.PURPLE, Size.LARGE, Weight.HEAVY, 5L),
-				new Item(Color.LEMON, Size.LARGE, Weight.HEAVY, 5L) };
+		final Item[] ia = { 
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 1L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 2L),
+				new Item(Color.GOLD, Size.GIANT, Weight.HEAVY, 3L),
+				new Item(Color.GOLD, Size.MEDIUM, Weight.HEAVY, 4L),
+				new Item(Color.GOLD, Size.SMALL, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.TINY, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L) };
 
 		// Insert items in ItemProcessort
 		for (int i = 0; i <= ia.length - 1; i++) {
@@ -37,12 +38,13 @@ public class UnitTestFrame {
 		Collection<Item> processedResult = new HashSet<Item>();
 		
 		final Item[] ia = {
-				new Item(Color.BLACK, Size.LARGE, Weight.HEAVY, 1L),
-				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 3L),
-				new Item(Color.AERO, Size.LARGE, Weight.HEAVY, 4L),
-				new Item(Color.GRAY, Size.LARGE, Weight.HEAVY, 5L),
-				new Item(Color.PURPLE, Size.LARGE, Weight.HEAVY, 5L),
-				new Item(Color.LEMON, Size.LARGE, Weight.HEAVY, 5L)
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L),
+				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 5L)
 			};
 
 		// Insert items in ItemProcessort
