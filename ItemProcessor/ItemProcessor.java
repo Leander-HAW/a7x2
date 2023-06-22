@@ -13,7 +13,6 @@ public class ItemProcessor implements ItemProcessor_I {
 
 	@Override
 	public Collection<Item> process(Item item) {
-
 		Size currentItemSize = item.getSize();
 		List<Set<Item>> listofSets = sevensome.get(currentItemSize);
 		Set<Item> returnSet = null;

@@ -11,10 +11,9 @@ public class UnitTestFrame {
 
 	@Test
 	public void testIsProcessWorkingLikeExpectet() {
-
 		final ItemProcessor_I ItemProcessor = new ItemProcessor();
 		Collection<Item> processedResult = new HashSet<Item>();
-		;
+		
 		final Item[] ia = { new Item(Color.BLACK, Size.LARGE, Weight.HEAVY, 1L),
 				new Item(Color.FLAX, Size.LARGE, Weight.HEAVY, 2L),
 				new Item(Color.GOLD, Size.LARGE, Weight.HEAVY, 3L),
@@ -30,12 +29,10 @@ public class UnitTestFrame {
 		for (int i = 0; i < ia.length; i++) {
 			assertTrue(processedResult.contains(ia[i]));
 		}
-
     }//method()
     
 	@Test
 	public void testSameItems() {
-
 		final ItemProcessor_I ItemProcessor = new ItemProcessor();
 		Collection<Item> processedResult = new HashSet<Item>();
 		
@@ -57,7 +54,6 @@ public class UnitTestFrame {
 		for (int i = 0; i < ia.length; i++) {
 			assertTrue(processedResult.contains(ia[i]));
 		}
-
     }//method()
     /*
     /**
